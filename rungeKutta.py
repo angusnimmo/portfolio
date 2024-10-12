@@ -108,6 +108,7 @@ def runge_kutta(
             K[i] = f(t[n] + c[i] * delta_t, u[n] + v[i] * delta_t)
     
         u[n + 1] = u[n] + np.dot(b, K) * delta_t
+    
     return (t, u)
 
 
@@ -144,6 +145,7 @@ def adaptive_RK(
             K_tilda[i] = f(t[-1] + c_tilda[i] * delta_t, u[-1] + v[i] * delta_t)
         
         u.append(u[-1] + np.dot(b, K_tilda * delta_t))
+    
     return (np.array(t), np.array(u))
 
 
