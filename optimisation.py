@@ -161,8 +161,10 @@ def newton(
     error: float
 ) -> float:
     a -= df_tilde(a, x, d) / d2f_tilde(a, x, d)
+    
     while abs(df_tilde(a, x, d)) > error:
         a -= df_tilde(a, x, d) / d2f_tilde(a, x, d)
+    
     return a
     
 if __name__ == "__main__":
