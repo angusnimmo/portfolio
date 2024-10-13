@@ -32,6 +32,7 @@ def main():
             abs(CNa[m][1] - exp(-CNa[m][0])),
             label=fr'CN, $\Delta t = {5/(20*2**m)}$'
         )
+    
     plt.title(
         fr'Forward Euler and Crank Nicolson Testing for $y(t) = e^{{-t}}$'
     )
@@ -52,6 +53,7 @@ def main():
             abs(CNb[m][1] - cos(CNb[m][0])),
             label=fr'CN, $\Delta t = {5/(20*2**m)}$'
         )
+    
     plt.title(fr'Forward Euler and Crank Nicolson Testing for $y(t) = cos(t)$')
     plt.xlabel(fr'$t$')
     plt.ylabel(fr'$|y(t_{{N}})-u_{{N}}|$')
@@ -62,6 +64,7 @@ def main():
     for N in {1, 2, 3, 4, 6, 12}:
         a, b = forward_euler(fa, 0, 12, 1, N)
         plt.plot(a, abs(b - exp(-a)), label=fr'FE, $\Delta t = {12/N}$')
+    
     plt.title(fr'Forward Euler Instability for $y(t) = e^{{-t}}$')
     plt.xlabel(fr'$t$')
     plt.ylabel(fr'$|y(t_{{N}})-u_{{N}}|$')
@@ -72,6 +75,7 @@ def main():
     for m in range(6):
         plt.plot(FEc[m][0], FEc[m][1], label=fr'FE, $\Delta t = {5/(20*2**m)}$')
         plt.plot(CNc[m][0], CNc[m][1], label=fr'CN, $\Delta t = {5/(20*2**m)}$')
+    
     plt.title(
         fr'Forward Euler and Crank-Nicolson Solutions to the ODE:'
         fr'$\frac{{dy}}{{dt}} = -ysin(y)$'
@@ -87,17 +91,21 @@ def forward_euler(f: callable, t0: float, T: float, y0: float, N: int) -> tuple:
     t = np.linspace(t0, T, N)
     u = np.zeros(N)
     u[0] = y0
+    
     for n in range(N - 1):
         u[n + 1] = u[n] + delta_t * f(t[n], u[n])
+    
     return (t, u)
     
     
 def newton_method(g: callable, x0: float, error: float) -> float:
     z = x0
     e = abs(g(z))
+    
     while e > error:
         z = z - g(z) / derivative(g, z)
         e = g(z)
+    
     return z
     
     
@@ -112,11 +120,13 @@ def crank_nicolson(
     t = np.linspace(t0, T, N)
     u = np.zeros(N)
     u[0] = y0
+    
     for n in range(N - 1):
         def g(z):
             return u[n] + (delta_t * (f(t[n], u[n]) + f(t[n + 1], z)) / 2) - z
             
         u[n + 1] = newton_method(g, u[n] + delta_t * f(t[n], u[n]), 10e-8)
+    
     return (t, u)
     
     
