@@ -130,6 +130,7 @@ def adaptive_RK(
     # When might this not be valid or is this valid for all valid errors?
     delta_t = error
     K_tilda = np.zeros(s_plus)
+    
     while t[-1] < T:
         for i in range(s_plus):
             v = np.dot(A_tilda, K_tilda)
