@@ -11,7 +11,7 @@ def main():
     s = np.linspace(h / 2, 1 - h / 2, N)
     x, y = np.meshgrid(s, s, indexing='ij')
     u0 = exp(-32 * ((x - 1 / 2)**2 + (y - 1 / 2)**2))
-    # (i) M = 1
+    # (i) M = 1, linear
     def M(phi: float) -> float:
         return 1.0
     
@@ -44,7 +44,7 @@ def main():
     time_slider.on_changed(update)
     plt.show()
     
-    # (ii) M = [phi(1 - phi)]^2
+    # (ii) M = [phi(1 - phi)]^2, nonlinear
     def M(phi: float) -> float:
         return (phi * (1 - phi))**2
     
