@@ -15,7 +15,8 @@ def main():
     s = np.linspace(h / 2, 1 - h / 2, N)
     x, y = np.meshgrid(s, s, indexing='ij')
     u0 = exp(-32 * ((x - 1 / 2)**2 + (y - 1 / 2)**2))
-    # (i) M = 1
+    
+    # (i) M = 1, linear
     with open('iii_sol.pkl', 'rb') as file:
         sol = load(file)
     
@@ -37,7 +38,7 @@ def main():
     )
     plt.show()
     
-    # (ii) M = [phi(1 - phi)]^2
+    # (ii) M = [phi(1 - phi)]^2, nonlinear
     with open('iv_sol.pkl', 'rb') as file:
         sol = load(file)
     
