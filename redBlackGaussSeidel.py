@@ -15,16 +15,17 @@ def main():
     ax.set_xlabel('$x$')
     ax.set_ylabel('$y$')
     ax.set_title(
-    r'$\frac{\partial^2 \phi}{\partial x^2}'
-    r' + \frac{\partial^2 \phi}{\partial y^2} = 0, (x,y) \in [0,L]^2$'
-    + '\n' + r'BC: $\phi(0,y) = \phi(L,y), \phi(x,0) = \phi(x,L)$'
-    + '\n' r'IC: $\phi_{i,j}^{(0)} = U[-1,1]$'
+        r'$\frac{\partial^2 \phi}{\partial x^2}'
+        r' + \frac{\partial^2 \phi}{\partial y^2} = 0, (x,y) \in [0,L]^2$'
+        + '\n' + r'BC: $\phi(0,y) = \phi(L,y), \phi(x,0) = \phi(x,L)$'
+        + '\n' r'IC: $\phi_{i,j}^{(0)} = U[-1,1]$'
     )
     plt.show()
     plt.semilogy(np.linspace(1, 1000, 1000), r)
     plt.xlabel('Number of iterations')
     plt.ylabel('Residual')
     plt.show()
+    
     # (2) Diffusion Equation
     T = [0, .25]
     D = 1
